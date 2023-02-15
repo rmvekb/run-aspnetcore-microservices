@@ -168,6 +168,7 @@ services:
         - "8006:80"
 
   elasticsearch:
+    image: ghcr.io/rmvekb/elasticsearch:7.9.2
     container_name: elasticsearch
     environment:
         - xpack.monitoring.enabled=true
@@ -180,6 +181,7 @@ services:
         - elasticsearch-data:/usr/share/elasticsearch/data   
 
   kibana:
+    image: ghcr.io/rmvekb/kibana:7.9.2
     container_name: kibana
     environment:        
         - ELASTICSEARCH_URL=http://elasticsearch:9200
