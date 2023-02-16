@@ -1,5 +1,9 @@
 name: Build and Publish
 
+env:
+  CI_PROJECT_NAME: run-aspnetcore-microservices 
+  IMAGE_TAG: "ghcr.io/rmvekb/aspnetrunbasics:latest"
+
 on:
   # run it on push to the default repository branch
   push:
@@ -29,4 +33,6 @@ jobs:
         run: |
           docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d --build
           docker-compose push
+          envsubst < deployment.yaml > deployment.k8s.yaml
+          cat deployment.k8s.yaml
 ###
